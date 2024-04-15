@@ -2,8 +2,8 @@
 
 def call() {
     echo "building the docker image..."
-    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-        sh 'docker build -t nanajanashia/demo-app:jma-2.0 .'
-        sh "echo $PASS | docker login -u $USER --password-stdin"
-        sh 'docker push nanajanashia/demo-app:jma-2.0'
+        withCredentials([usernamePassword(credentialsId: 'nexus-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+            sh 'docker build -t 37.187.124.95:8888/demojavapp:v2.0 .'
+            sh "echo $PASS | docker login 37.187.124.95:8888 -u $USER --password-stdin"
+            sh 'docker push 37.187.124.95:8888/demojavapp:v2.0'
 }
