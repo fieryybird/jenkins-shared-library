@@ -6,4 +6,5 @@ def call() {
             sh 'docker build -t 37.187.124.95:8888/demojavapp:v2.0 .'
             sh "echo $PASS | docker login 37.187.124.95:8888 -u $USER --password-stdin"
             sh 'docker push 37.187.124.95:8888/demojavapp:v2.0'
+    }
 }
