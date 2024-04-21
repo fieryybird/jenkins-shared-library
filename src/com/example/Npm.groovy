@@ -22,6 +22,11 @@ class Npm implements Serializable {
     script.sh 'rm -rf node_modules'
   }
 
+  def npmParseVersion() {
+    def version = script.sh(script: "node -p \"require('./package.json').version\"", returnStdout: true).trim()
+    script.env.VERSION = version
+  }
+
   def npmVersionUpdateMajor() {
     script.sh 'npm version major --no-git-tag-version'
   }
