@@ -15,9 +15,9 @@ class Git implements Serializable {
   }
 
 
-  def gitLoginSetRepository(String repoUrl) {
+  def gitLoginSetRepository() {
       script.withCredentials([script.usernamePassword(credentialsId: 'gitlab-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-      script.sh "git remote set-url origin https://$script.USER:$script.PASS@$script.repoUrl"
+      script.sh "git remote set-url origin https://$script.USER:$script.PASS@gitlab.com/fieryybird/bootcamp-jenkins-homework.git"
     }
   }
 
