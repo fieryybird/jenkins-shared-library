@@ -9,7 +9,7 @@ class Docker implements Serializable {
     this.script = script
   }
 
-   def dockerLogin() {
+   def dockerLoginHub() {
         script.withCredentials([script.usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
             script.sh "echo $script.PASS | docker login -u $script.USER --password-stdin"
     }
@@ -28,5 +28,10 @@ class Docker implements Serializable {
   def dockerPush(String imageName) {
             script.sh "docker push $imageName"
     }
+
+  def dockerRemoveImage(String imageName) {
+            script.sh "docker rmi $imageName"
+    }
+
 
 }
