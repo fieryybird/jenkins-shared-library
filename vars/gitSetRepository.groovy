@@ -3,6 +3,6 @@
 import com.example.Git
 
 def call(String repoUrl) {
-  return new Git(this).gitLoginSetRepository(repoUrl)
+  return new Git(this).gitSetRepository(repoUrl)
 }
 

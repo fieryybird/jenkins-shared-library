@@ -15,16 +15,16 @@ class Git implements Serializable {
   }
 
 
-  def gitLoginSetRepository(String repoUrl) {
+  def gitSetRepository(String repoUrl) {
       script.withCredentials([script.usernamePassword(credentialsId: 'gitlab-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
       script.sh "git remote set-url origin https://$script.USER:$script.PASS@$repoUrl"
     }
   }
 
 
-  def gitCommitVersionUpdate() {
+  def gitCommitVersionUpdate(String version) {
       script.sh 'git add .'
-      script.sh 'git commit -m "CI version bump"'
+      script.sh "git commit -m 'CI version bump to $version'"
       script.sh 'git push origin HEAD:main'
   }
 

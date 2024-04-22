@@ -2,7 +2,7 @@
 
 import com.example.Git
 
-def call() {
-  return new Git(this).gitCommitVersionUpdate()
+def call(String version) {
+  return new Git(this).gitCommitVersionUpdate(version)
 }
 
