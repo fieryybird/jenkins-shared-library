@@ -10,22 +10,22 @@ class Git implements Serializable {
   }
 
   def gitConfigJenkinsUser() {
-      sh 'git config --global user.name "jenkins"'
-      sh 'git config --global user.email "jenkins@cicd.com"'
+      script.sh 'git config --global user.name "jenkins"'
+      script.sh 'git config --global user.email "jenkins@cicd.com"'
   }
 
 
   def gitLoginSetRepository(String repoUrl) {
       script.withCredentials([script.usernamePassword(credentialsId: 'gitlab-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-      sh "git remote set-url origin https://$script.USER:$script.PASS@$script.repoUrl"
+      script.sh "git remote set-url origin https://$script.USER:$script.PASS@$script.repoUrl"
     }
   }
 
 
   def gitCommitVersionUpdate(String appVersion) {
-      sh 'git add .'
-      sh "git commit -m "CI version bump to $script.appVersion""
-      sh 'git push origin HEAD:main'
+      script.sh 'git add .'
+      script.sh "git commit -m "CI version bump to $script.appVersion""
+      script.sh 'git push origin HEAD:main'
   }
 
 }
