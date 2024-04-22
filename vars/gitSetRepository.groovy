@@ -2,7 +2,7 @@
 
 import com.example.Git
 
-def call(String repoUrl) {
-  return new Git(this).gitSetRepository(repoUrl)
+def call(String git_credentials, String repoUrl) {
+  return new Git(this).gitSetRepository(git_credentials, repoUrl)
 }
 
