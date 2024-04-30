@@ -32,6 +32,10 @@ class Maven implements Serializable {
 
 
 def mavenParseVersion() {
+    def pomContent = script.readFile('pom.xml') 
+    def matcher = pomContent =~ '<version>(.+)</version>'
+    def extract_vers = matcher[0][1]
+    script.env.VERSION = extract_vers
   }
 
 }
